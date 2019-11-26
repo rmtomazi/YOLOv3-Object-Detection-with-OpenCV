@@ -120,7 +120,6 @@ if __name__ == '__main__':
 			cv.destroyAllWindows()
 
 	elif FLAGS.url_video:
-		print ('Starting Inference on Webcam')
 		print ('For close, press ctrl+c on terminal or q on window')
 		# Infer real-time on webcam
 		count = 0
