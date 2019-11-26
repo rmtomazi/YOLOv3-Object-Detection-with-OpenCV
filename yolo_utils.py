@@ -28,7 +28,7 @@ def draw_labels_and_boxes(img, boxes, confidences, classids, idxs, colors, label
     return img
 
 
-def generate_boxes_confidences_classids(outs, height, width, tconf):
+def generate_boxes_confidences_classids(outs, height, width, tconf, labels, object_):
     boxes = []
     confidences = []
     classids = []
@@ -44,7 +44,7 @@ def generate_boxes_confidences_classids(outs, height, width, tconf):
             confidence = scores[classid]
             
             # Consider only the predictions that are above a certain confidence level
-            if confidence > tconf:
+            if confidence > tconf and classid == labels.index(object_):
                 # TODO Check detection
                 box = detection[0:4] * np.array([width, height, width, height])
                 centerX, centerY, bwidth, bheight = box.astype('int')
@@ -76,13 +76,9 @@ def infer_image(net, layer_names, height, width, img, colors, labels, FLAGS,
         start = time.time()
         outs = net.forward(layer_names)
         end = time.time()
-
-        if FLAGS.show_time:
-            print ("[INFO] YOLOv3 took {:6f} seconds".format(end - start))
-
         
         # Generate the boxes, confidences, and classIDs
-        boxes, confidences, classids = generate_boxes_confidences_classids(outs, height, width, FLAGS.confidence)
+        boxes, confidences, classids = generate_boxes_confidences_classids(outs, height, width, FLAGS.confidence, labels, FLAGS.object)
         
         # Apply Non-Maxima Suppression to suppress overlapping bounding boxes
         idxs = cv.dnn.NMSBoxes(boxes, confidences, FLAGS.confidence, FLAGS.threshold)

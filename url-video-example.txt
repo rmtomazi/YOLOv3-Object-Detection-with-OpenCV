@@ -1,0 +1,1 @@
+"http://bemtevi.segurancapublica.sc.gov.br:8049/Interface/Cameras/GetJPEGStream?Camera=FNS_COQ_046&width=580&height=389&AuthUser=camerasonline&AuthPass=camerasonline"
