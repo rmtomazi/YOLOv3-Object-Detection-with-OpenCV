@@ -12,7 +12,7 @@ https://github.com/iArunava/YOLOv3-Object-Detection-with-OpenCV
 git clone https://github.com/rmtomazi/YOLOv3-Object-Detection-with-OpenCV.git
 ```
 
-2) Move to the directory
+2) Go to directory
 ```
 cd YOLOv3-Object-Detection-with-OpenCV
 ```
